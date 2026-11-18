@@ -1,0 +1,8 @@
+{
+  "name": "UNO Tabletop",
+  "description": "Authentic UNO card game with complete official rules, Wild +4 challenges, UNO call-outs, smart AI opponents, and a tactile emerald felt tabletop.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

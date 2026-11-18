@@ -1,0 +1,105 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Authenticated UNO Tabletop player profile, coin wallet, unlocked card/table cosmetics, and career statistics.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Firebase Auth UID of the player."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 24,
+          "description": "Player's chosen tabletop display name."
+        },
+        "coins": {
+          "type": "integer",
+          "description": "Current in-game coin balance."
+        },
+        "unlockedCards": {
+          "type": "array",
+          "description": "List of unlocked card deck theme IDs."
+        },
+        "unlockedTables": {
+          "type": "array",
+          "description": "List of unlocked felt table theme IDs."
+        },
+        "equippedCard": {
+          "type": "string",
+          "enum": ["classic", "midnight-gold", "neon-arcade", "sakura-pastel", "royal-ruby"],
+          "description": "Currently equipped card deck theme ID."
+        },
+        "equippedTable": {
+          "type": "string",
+          "enum": ["emerald", "navy", "bordeaux", "obsidian"],
+          "description": "Currently equipped table felt theme ID."
+        },
+        "gamesPlayed": {
+          "type": "integer",
+          "description": "Total completed matches."
+        },
+        "gamesWon": {
+          "type": "integer",
+          "description": "Total matches won."
+        },
+        "currentStreak": {
+          "type": "integer",
+          "description": "Current consecutive win streak."
+        },
+        "bestStreak": {
+          "type": "integer",
+          "description": "Highest win streak achieved."
+        },
+        "highestRoundPoints": {
+          "type": "integer",
+          "description": "Highest single-round score achieved."
+        },
+        "lastDailyClaimAt": {
+          "type": "number",
+          "description": "Epoch millisecond timestamp of the last daily coin bonus claim."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the profile was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the profile was last updated."
+        }
+      },
+      "required": [
+        "uid",
+        "displayName",
+        "coins",
+        "unlockedCards",
+        "unlockedTables",
+        "equippedCard",
+        "equippedTable",
+        "gamesPlayed",
+        "gamesWon",
+        "currentStreak",
+        "bestStreak",
+        "highestRoundPoints",
+        "lastDailyClaimAt",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Owner-only player profile storing coins, unlocked card/table themes, and stats."
+    }
+  }
+}
